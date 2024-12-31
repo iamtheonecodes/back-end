@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    
+    
+</head>
+<body>
+
+    <h1 style="color: white; text-align: center; padding-top: 200px;" >My Calculator </h1>
+   
+    <form action="/" method="post">
+     <input type="text" name="dig1" placeholder="first number" style="padding-top: 20px; padding-left: 30px; padding-right: 30px; border-radius: 8px;  border: none;">
+     <input type="text"  name="dig2" placeholder="second number" style="padding-top: 20px; padding-left: 30px; padding-right: 30px; border-radius: 8px;  border: none;"> <br>
+        <div style="padding-top: 20px; "><button type="submit" name="submit" style="padding-top: 4px; padding-left: 30px; padding-right: 30px; background-color: white; border: none;">submit</button></div>
+        
+    </form>
+
+    <br>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('calcForm').addEventListener('submit', async function(event){
+       event.preventDefault();
+
+       const formData = new FormData(this)
+
+       const response = await fetch('/',{
+        method: 'POST',
+        headers : {
+            'contact-type': 'application/x-www-form-urlencoded'
+        },
+        body : new URLSearchParams(formData)
+       });
+       const result = await response.text();
+       document.getElementById('result').innerHTML = result
+        });
+    </script>
+
+    <style>
+        body{
+            background-color: black;
+        }
+
+        form{
+            text-align: center;
+            padding-top: 30px;   
+        }
+
+      
+    </style>
+</body> 
+</html>
